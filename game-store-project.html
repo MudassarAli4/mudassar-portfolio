@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Store React - Project Details</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style1.css" />
+    <style>
+      .project-header {
+        background-color: var(--card-bg);
+        padding: 3rem 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .project-header h1 {
+        font-size: 2.5rem;
+        color: var(--dark);
+        margin-bottom: 1rem;
+      }
+
+      .project-header p {
+        font-size: 1.1rem;
+        color: var(--text);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .project-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .project-section {
+        background-color: var(--card-bg);
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 10px var(--shadow);
+      }
+
+      .project-section h2 {
+        color: var(--dark);
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+      }
+
+      .project-section h3 {
+        color: var(--dark);
+        margin: 1.5rem 0 1rem;
+        font-size: 1.4rem;
+      }
+
+      .features-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .feature-item {
+        background-color: var(--light);
+        padding: 1.5rem;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature-item h3 {
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .feature-item h3 i {
+        margin-right: 10px;
+        color: var(--secondary);
+      }
+
+      .feature-item p {
+        color: var(--text);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .tech-stack {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .tech-category {
+        background-color: var(--light);
+        padding: 1.5rem;
+        border-radius: 8px;
+      }
+
+      .tech-category h3 {
+        color: var(--dark);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+      }
+
+      .tech-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .tech-list li {
+        color: var(--text);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .tech-list li i {
+        margin-right: 8px;
+        color: var(--secondary);
+      }
+
+      .video-container {
+        background-color: var(--light);
+        border-radius: 8px;
+        padding: 2rem;
+        margin-top: 1rem;
+      }
+
+      .demo-video {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        display: block;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .video-caption {
+        text-align: center;
+        margin-top: 1.5rem;
+      }
+
+      .video-caption h3 {
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        font-size: 1.4rem;
+      }
+
+      .video-caption p {
+        color: var(--text);
+        font-size: 1rem;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .back-btn {
+        position: fixed;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.8rem 1.5rem;
+        background-color: var(--secondary);
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-bottom: 2rem;
+        transition: background-color 0.3s;
+      }
+
+      .back-btn:hover {
+        background-color: var(--primary);
+      }
+
+      .back-btn i {
+        margin-right: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .project-header {
+          padding: 2rem 1rem;
+        }
+
+        .project-header h1 {
+          font-size: 2rem;
+        }
+
+        .project-content {
+          padding: 0 1rem;
+        }
+
+        .features-list {
+          grid-template-columns: 1fr;
+        }
+
+        .tech-stack {
+          grid-template-columns: 1fr;
+        }
+
+        .video-container {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="project-content">
+      <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Portfolio
+      </a>
+
+      <div class="project-header">
+        <h1>Game Store React 🎮</h1>
+        <p>
+          A dynamic frontend application built with React that simulates an
+          online game store. Features interactive carousels, video previews,
+          favorites system, and shopping cart functionality.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <h2>Features ✨</h2>
+
+        <h3>Game Showcase</h3>
+        <div class="features-list">
+          <div class="feature-item">
+            <h3><i class="fas fa-film"></i> Interactive Carousels</h3>
+            <p>Games displayed in Swiper carousels with smooth transitions</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-video"></i> Video Previews</h3>
+            <p>Embedded video links for game previews and trailers</p>
+          </div>
+        </div>
+
+        <h3>User Interaction</h3>
+        <div class="features-list">
+          <div class="feature-item">
+            <h3><i class="fas fa-heart"></i> Like System</h3>
+            <p>Like/unlike games with real-time counter updates</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-bookmark"></i> Library</h3>
+            <p>Save favorite games in a dedicated library section</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-shopping-cart"></i> Shopping Cart</h3>
+            <p>Add/remove games and manage purchases</p>
+          </div>
+        </div>
+
+        <h3>UI/UX Features</h3>
+        <div class="features-list">
+          <div class="feature-item">
+            <h3><i class="fas fa-search"></i> Search & Filter</h3>
+            <p>Category-based filtering and game name search</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-mobile-alt"></i> Responsive Design</h3>
+            <p>Mobile-friendly layout with Bootstrap</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-magic"></i> Smooth Transitions</h3>
+            <p>CSS animations and interactive elements</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-section">
+        <h2>Technologies Used 🛠️</h2>
+        <div class="tech-stack">
+          <div class="tech-category">
+            <h3>Core Stack</h3>
+            <ul class="tech-list">
+              <li><i class="fab fa-react"></i> React (v18.3.1)</li>
+              <li><i class="fab fa-bootstrap"></i> Bootstrap (v5.3.3)</li>
+              <li><i class="fas fa-icons"></i> Bootstrap Icons (v1.11.3)</li>
+              <li><i class="fas fa-sliders-h"></i> Swiper (v11.1.5)</li>
+            </ul>
+          </div>
+          <div class="tech-category">
+            <h3>State Management</h3>
+            <ul class="tech-list">
+              <li><i class="fas fa-code"></i> React Hooks</li>
+              <li><i class="fas fa-database"></i> useState</li>
+              <li><i class="fas fa-sync"></i> useEffect</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-section">
+        <h2>Video Demo 🎥</h2>
+        <div class="video-container">
+          <video id="demoVideo" controls class="demo-video">
+            <source src="assets/game/Game Store.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-caption">
+            <h3>Game Store React Demo</h3>
+            <p>
+              A comprehensive walkthrough of the Game Store React application
+              showcasing key features and functionalities.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Commented Image Gallery Section for Future Use -->
+      <!--
+      <div class="project-section">
+        <h2>Project Gallery</h2>
+        <div class="gallery-grid" id="gallery">
+        </div>
+      </div>
+      -->
+    </div>
+  </body>
+</html>

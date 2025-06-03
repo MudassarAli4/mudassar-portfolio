@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Commerce Platform - Project Details</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style1.css" />
+    <style>
+      .project-header {
+        background-color: var(--card-bg);
+        padding: 3rem 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .project-header h1 {
+        font-size: 2.5rem;
+        color: var(--dark);
+        margin-bottom: 1rem;
+      }
+
+      .project-header p {
+        font-size: 1.1rem;
+        color: var(--text);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .project-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .project-section {
+        background-color: var(--card-bg);
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 10px var(--shadow);
+      }
+
+      .project-section h2 {
+        color: var(--dark);
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+      }
+
+      .features-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .feature-item {
+        background-color: var(--light);
+        padding: 1.5rem;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature-item h3 {
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .feature-item h3 i {
+        margin-right: 10px;
+        color: var(--secondary);
+      }
+
+      .feature-item p {
+        color: var(--text);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .gallery-item {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        aspect-ratio: 16/9;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+
+      .gallery-item .caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 0.8rem;
+        font-size: 0.9rem;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover .caption {
+        transform: translateY(0);
+      }
+
+      /* Image Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        max-width: 90%;
+        max-height: 90vh;
+        position: relative;
+      }
+
+      .modal-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+
+      .modal-caption {
+        color: white;
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .back-btn {
+        position: fixed;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.8rem 1.5rem;
+        background-color: var(--secondary);
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-bottom: 2rem;
+        transition: background-color 0.3s;
+      }
+
+      .back-btn:hover {
+        background-color: var(--primary);
+      }
+
+      .back-btn i {
+        margin-right: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .project-header {
+          padding: 2rem 1rem;
+        }
+
+        .project-header h1 {
+          font-size: 2rem;
+        }
+
+        .project-content {
+          padding: 0 1rem;
+        }
+
+        .features-list {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="project-content">
+      <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Portfolio
+      </a>
+
+      <div class="project-header">
+        <h1>E-Commerce Platform</h1>
+        <p>
+          A full-featured online shopping platform with user authentication,
+          product catalog, shopping cart, and checkout forms.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <h2>Project Overview</h2>
+        <p>
+          This E-commerce platform is a comprehensive solution for online
+          retail, featuring a modern user interface and robust backend
+          functionality. The project demonstrates full-stack development skills
+          with React, Node.js, and MongoDB.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <h2>Key Features</h2>
+        <div class="features-list">
+          <div class="feature-item">
+            <h3><i class="fas fa-user-shield"></i> User Authentication</h3>
+            <p>
+              Secure user registration and login system with JWT authentication
+              and role-based access control.
+            </p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-shopping-cart"></i> Shopping Cart</h3>
+            <p>
+              Real-time cart management with persistent storage and quantity
+              controls.
+            </p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-credit-card"></i> Checkout Forms</h3>
+            <p>
+              Complete your order with our easy-to-use form to confirm product
+              details before finalizing your purchase.
+            </p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-search"></i> Product Search</h3>
+            <p>
+              Advanced search functionality with filters and sorting options.
+            </p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-chart-line"></i> Admin Dashboard</h3>
+            <p>
+              Comprehensive admin panel for managing products, orders, and
+              users.
+            </p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-mobile-alt"></i> Responsive Design</h3>
+            <p>
+              Mobile-first approach ensuring seamless experience across all
+              devices.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-section">
+        <h2>Project Gallery</h2>
+        <div class="gallery-grid" id="gallery">
+          <!-- Images will be loaded dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+      <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <img src="" alt="" id="modalImage" />
+        <div class="modal-caption" id="modalCaption"></div>
+      </div>
+    </div>
+
+    <script>
+      // Function to load gallery images
+      function loadGalleryImages() {
+        const gallery = document.getElementById("gallery");
+        const imageNames = [
+          "register",
+          "admin-dashboard",
+          "admin-orderDetail",
+          "admin-products",
+          "admin-users",
+          "admin-orders",
+          "cart",
+          "checkout-step1",
+          "checkout-step2",
+          "checkout-step3",
+          "home",
+          "myorders",
+          "product-detail",
+        ];
+
+        imageNames.forEach((name) => {
+          const item = document.createElement("div");
+          item.className = "gallery-item";
+
+          const img = document.createElement("img");
+          img.src = `assets/ecommerce/ecommerce-${name}.png`;
+          img.alt = `E-commerce ${
+            name.charAt(0).toUpperCase() + name.slice(1)
+          }`;
+
+          const caption = document.createElement("div");
+          caption.className = "caption";
+          caption.textContent =
+            name.charAt(0).toUpperCase() + name.slice(1) + " Page";
+
+          item.appendChild(img);
+          item.appendChild(caption);
+          gallery.appendChild(item);
+
+          // Add click event for modal
+          item.addEventListener("click", () => {
+            openModal(img.src, caption.textContent);
+          });
+        });
+      }
+
+      // Modal functionality
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImage");
+      const modalCaption = document.getElementById("modalCaption");
+      const closeBtn = document.querySelector(".modal-close");
+
+      function openModal(src, caption) {
+        modal.classList.add("active");
+        modalImg.src = src;
+        modalCaption.textContent = caption;
+      }
+
+      function closeModal() {
+        modal.classList.remove("active");
+      }
+
+      closeBtn.addEventListener("click", closeModal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Load gallery images when page loads
+      window.addEventListener("load", loadGalleryImages);
+    </script>
+  </body>
+</html>

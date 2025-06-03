@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReserveHub - Project Details</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style1.css" />
+    <style>
+      .project-header {
+        background-color: var(--card-bg);
+        padding: 3rem 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .project-header h1 {
+        font-size: 2.5rem;
+        color: var(--dark);
+        margin-bottom: 1rem;
+      }
+
+      .project-header p {
+        font-size: 1.1rem;
+        color: var(--text);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .project-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .project-section {
+        background-color: var(--card-bg);
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 10px var(--shadow);
+      }
+
+      .project-section h2 {
+        color: var(--dark);
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+      }
+
+      .project-section h3 {
+        color: var(--dark);
+        margin: 1.5rem 0 1rem;
+        font-size: 1.4rem;
+      }
+
+      .features-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .feature-item {
+        background-color: var(--light);
+        padding: 1.5rem;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature-item h3 {
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .feature-item h3 i {
+        margin-right: 10px;
+        color: var(--secondary);
+      }
+
+      .feature-item p {
+        color: var(--text);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .tech-stack {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .tech-category {
+        background-color: var(--light);
+        padding: 1.5rem;
+        border-radius: 8px;
+      }
+
+      .tech-category h3 {
+        color: var(--dark);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+      }
+
+      .tech-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .tech-list li {
+        color: var(--text);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .tech-list li i {
+        margin-right: 8px;
+        color: var(--secondary);
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .gallery-item {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        aspect-ratio: 16/9;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+
+      .gallery-item .caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 0.8rem;
+        font-size: 0.9rem;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover .caption {
+        transform: translateY(0);
+      }
+
+      /* Image Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        max-width: 90%;
+        max-height: 90vh;
+        position: relative;
+      }
+
+      .modal-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+
+      .modal-caption {
+        color: white;
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .back-btn {
+        position: fixed;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.8rem 1.5rem;
+        background-color: var(--secondary);
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-bottom: 2rem;
+        transition: background-color 0.3s;
+      }
+
+      .back-btn:hover {
+        background-color: var(--primary);
+      }
+
+      .back-btn i {
+        margin-right: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .project-header {
+          padding: 2rem 1rem;
+        }
+
+        .project-header h1 {
+          font-size: 2rem;
+        }
+
+        .project-content {
+          padding: 0 1rem;
+        }
+
+        .features-list {
+          grid-template-columns: 1fr;
+        }
+
+        .tech-stack {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+      }
+
+      .video-container {
+        background-color: var(--light);
+        border-radius: 8px;
+        padding: 2rem;
+        margin-top: 1rem;
+      }
+
+      .demo-video {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        display: block;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .video-caption {
+        text-align: center;
+        margin-top: 1.5rem;
+      }
+
+      .video-caption h3 {
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        font-size: 1.4rem;
+      }
+
+      .video-caption p {
+        color: var(--text);
+        font-size: 1rem;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 768px) {
+        .video-container {
+          padding: 1rem;
+        }
+
+        .demo-video {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="project-content">
+      <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Portfolio
+      </a>
+
+      <div class="project-header">
+        <h1>ReserveHub 🏠</h1>
+        <p>
+          A comprehensive web platform simplifying hostel finding and booking
+          for students, while also serving hostel owners and administrators with
+          powerful management tools.
+        </p>
+      </div>
+
+      <div class="project-section">
+        <h2>Features ✨</h2>
+
+        <h3>For Students</h3>
+        <div class="features-list">
+          <div class="feature-item">
+            <h3><i class="fas fa-search"></i> Search & Filter</h3>
+            <p>Find hostels by location, price, and features</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-calendar-check"></i> Online Booking</h3>
+            <p>Secure room booking with Stripe integration</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-comments"></i> Chat System</h3>
+            <p>Direct communication with hostel owners</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-star"></i> Reviews</h3>
+            <p>Submit and read hostel reviews</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-bell"></i> Notifications</h3>
+            <p>Real-time updates on bookings and offers</p>
+          </div>
+        </div>
+
+        <h3>For Hostel Owners</h3>
+        <div class="features-list">
+          <div class="feature-item">
+            <h3><i class="fas fa-home"></i> Property Management</h3>
+            <p>List and showcase properties effectively</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-calendar-alt"></i> Booking Management</h3>
+            <p>Handle reservations and availability</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-comment-dots"></i> Communication</h3>
+            <p>Direct chat with potential students</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-user-cog"></i> Profile Management</h3>
+            <p>Manage hostel and owner information</p>
+          </div>
+        </div>
+
+        <h3>For Administrators</h3>
+        <div class="features-list">
+          <div class="feature-item">
+            <h3><i class="fas fa-user-shield"></i> User Management</h3>
+            <p>Approve and manage user registrations</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-tasks"></i> Content Management</h3>
+            <p>Oversee platform content and listings</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-shield-alt"></i> Security</h3>
+            <p>Ensure platform security and compliance</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-section">
+        <h2>Technical Features 🛠️</h2>
+        <div class="features-list">
+          <div class="feature-item">
+            <h3><i class="fas fa-user-lock"></i> Authentication</h3>
+            <p>Secure user authentication and authorization</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-desktop"></i> Multi-Dashboard</h3>
+            <p>Separate interfaces for admin, students, and owners</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-credit-card"></i> Payment System</h3>
+            <p>Secure Stripe integration for bookings</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-map-marked-alt"></i> Location Services</h3>
+            <p>Interactive maps and location-based search</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-comment-alt"></i> Real-time Chat</h3>
+            <p>Socket.io powered messaging system</p>
+          </div>
+          <div class="feature-item">
+            <h3><i class="fas fa-bell"></i> Notification System</h3>
+            <p>Real-time updates and alerts</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-section">
+        <h2>Technologies Used 🛠️</h2>
+        <div class="tech-stack">
+          <div class="tech-category">
+            <h3>Backend</h3>
+            <ul class="tech-list">
+              <li><i class="fab fa-node-js"></i> Node.js</li>
+              <li><i class="fas fa-server"></i> Express.js</li>
+              <li><i class="fas fa-database"></i> MongoDB</li>
+              <li><i class="fas fa-database"></i> Mongoose</li>
+              <li><i class="fas fa-credit-card"></i> Stripe API</li>
+              <li><i class="fas fa-exchange-alt"></i> Socket.io</li>
+            </ul>
+          </div>
+          <div class="tech-category">
+            <h3>Frontend</h3>
+            <ul class="tech-list">
+              <li><i class="fab fa-react"></i> React.js</li>
+              <li><i class="fab fa-css3-alt"></i> Tailwind CSS</li>
+              <li><i class="fas fa-exchange-alt"></i> Axios</li>
+              <li><i class="fas fa-bell"></i> React-Toastify</li>
+              <li><i class="fas fa-map"></i> Leaflet</li>
+            </ul>
+          </div>
+          <div class="tech-category">
+            <h3>Deployment & Tools</h3>
+            <ul class="tech-list">
+              <li><i class="fas fa-cloud"></i> Vercel (Frontend)</li>
+              <li><i class="fas fa-server"></i> Railway (Backend)</li>
+              <li><i class="fas fa-database"></i> MongoDB Atlas</li>
+              <li><i class="fas fa-envelope"></i> Nodemailer</li>
+              <li><i class="fas fa-key"></i> JWT</li>
+              <li><i class="fas fa-lock"></i> bcryptjs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-section">
+        <h2>Project Gallery</h2>
+        <div class="gallery-grid" id="gallery">
+          <!-- Images will be loaded dynamically -->
+        </div>
+      </div>
+
+      <div class="project-section">
+        <h2>Video Demo 🎥</h2>
+        <div class="video-container">
+          <video
+            id="demoVideo"
+            controls
+            poster="assets/reserveHub/video-poster.jpg"
+            class="demo-video"
+          >
+            <source
+              src="assets/reserveHub/Demo ReserveHub (MERN).mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-caption">
+            <h3>ReserveHub Platform Demo</h3>
+            <p>
+              A comprehensive walkthrough of the ReserveHub platform showcasing
+              key features and functionalities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+      <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <img src="" alt="" id="modalImage" />
+        <div class="modal-caption" id="modalCaption"></div>
+      </div>
+    </div>
+
+    <script>
+      // Function to load gallery images
+      function loadGalleryImages() {
+        const gallery = document.getElementById("gallery");
+        const imageNames = [
+          "login",
+          "signup",
+          "home",
+          "HostelInCity",
+          "RoomDisplayy",
+          "Roombooking",
+          "admin-dashboard",
+          "AddComplaintPopUp",
+          "AddProperty",
+          "AddReviewPopUp",
+          "ChatScreen",
+          "EditProfile",
+          "Notifications",
+          "Wallet",
+          "MyProperties",
+          "OwnerComplaint",
+          "PropertyDetailForm",
+          "ReservationsOwner",
+          "ReviewsOwner",
+          "UserAccomadations",
+        ];
+
+        imageNames.forEach((name) => {
+          const item = document.createElement("div");
+          item.className = "gallery-item";
+
+          const img = document.createElement("img");
+          img.src = `assets/reserveHub/${name}.png`;
+          img.alt = `ReserveHub ${name
+            .split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ")}`;
+
+          const caption = document.createElement("div");
+          caption.className = "caption";
+          caption.textContent = name
+            .split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+
+          item.appendChild(img);
+          item.appendChild(caption);
+          gallery.appendChild(item);
+
+          // Add click event for modal
+          item.addEventListener("click", () => {
+            openModal(img.src, caption.textContent);
+          });
+        });
+      }
+
+      // Modal functionality
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImage");
+      const modalCaption = document.getElementById("modalCaption");
+      const closeBtn = document.querySelector(".modal-close");
+
+      function openModal(src, caption) {
+        modal.classList.add("active");
+        modalImg.src = src;
+        modalCaption.textContent = caption;
+      }
+
+      function closeModal() {
+        modal.classList.remove("active");
+      }
+
+      closeBtn.addEventListener("click", closeModal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Load gallery images when page loads
+      window.addEventListener("load", loadGalleryImages);
+    </script>
+  </body>
+</html>
